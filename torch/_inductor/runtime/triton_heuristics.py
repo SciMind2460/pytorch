@@ -18,6 +18,7 @@ import time
 from typing import Any, Dict, List, Optional, Set, Tuple
 
 import torch
+from torch._inductor import config as inductor_config
 
 from .autotune_cache import AutotuneCache
 from .benchmarking import benchmarker
@@ -877,7 +878,7 @@ class CachingAutotuner(KernelInterface):
         if launcher.store_cubin:
             self.save_gpu_kernel(grid, stream, launcher)
 
-        if os.environ.get("TORCHINDUCTOR_DUMP_LAUNCH_PARAMS", 0) == "1":
+        if inductor_config.triton.dump_launch_params:
             _dump_launch_params(args, kwargs, launcher, self.fn.__name__)
 
         # it is faster than entering and exiting a context manager, even if the context

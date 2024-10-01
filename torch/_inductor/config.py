@@ -981,6 +981,9 @@ class triton:
     # Whether to upcast float16 / bfloat16 to float32 in triton codegen (Experimental)
     codegen_upcast_to_fp32 = True
 
+    # Dumps the launch configs after autotuning.
+    dump_launch_params = os.environ.get("TORCHINDUCTOR_DUMP_LAUNCH_PARAMS", 0) == "1"
+
 
 class aot_inductor:
     # AOTInductor output path
