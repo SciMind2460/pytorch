@@ -200,7 +200,6 @@ class BuiltinVariable(VariableTracker):
             operator.ne,
             operator.eq,
             operator.sub,
-            operator.getitem,
             operator.length_hint,
             operator.lshift,
             operator.rshift,
@@ -212,6 +211,7 @@ class BuiltinVariable(VariableTracker):
             operator.imatmul,
             operator.ifloordiv,
             operator.itruediv,
+            operator.getitem,
             operator.imod,
             operator.iadd,
             operator.isub,
@@ -857,6 +857,8 @@ class BuiltinVariable(VariableTracker):
 
         if kwargs and not self.tensor_args(*args, *kwargs.values()):
             return
+
+        # insert handling for torch function here
 
         fn = self.fn
         try:
