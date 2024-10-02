@@ -15,6 +15,8 @@ from concurrent.futures import Future, ProcessPoolExecutor
 from concurrent.futures.process import BrokenProcessPool
 from typing import Any, Callable, Dict
 
+import torch._thread_safe_fork  # noqa: F401
+
 from torch._inductor import config
 from torch._inductor.compile_worker.watchdog import _async_compile_initializer
 
